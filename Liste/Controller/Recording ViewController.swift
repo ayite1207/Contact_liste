@@ -19,7 +19,7 @@ class RecordingViewController: UIViewController {
     @IBOutlet weak var tel: UITextField!
     @IBOutlet weak var mail: UITextField!
     var person : Person?
-    var listeContact : [Person]?
+    var listeContact : [Person] = []
    
     var test = "SALUT LES TERRIENS !"
     
@@ -41,7 +41,9 @@ class RecordingViewController: UIViewController {
 
     @IBAction func recording(_ sender: Any) {
         guard let name = name.text, let firstName = firstName.text, let phone = tel.text, let adress = adress.text,  let city = city.text, let cP = cP.text, let mail = mail.text, let picture = picture else {return}
+        
         let checkData = CheckData(name: name, firstName: firstName, phone: phone)
+        
         guard checkData.emptyField() else {
             return indicateEmptyFields()
         }
@@ -53,11 +55,9 @@ class RecordingViewController: UIViewController {
             tel.text = ""
             return tel.placeholder = "votre numéro n'est pas complet"
         }
-        print("OK")
         person = Person(name: checkData.name!, firstName: checkData.firstName!, tel: checkData.phone!, adress: adress, cP: cP, city: city, mail: mail, picture: picture)
-        print(person?.name)
-       listeContact?.append(person!)
-        performSegue(withIdentifier: "listeContacts", sender: nil)
+       listeContact.append(person!)
+        dismiss(animated: true, completion: nil)
     }
     
     func indicateEmptyFields(){
@@ -65,8 +65,7 @@ class RecordingViewController: UIViewController {
         for feild in tabFeild {
             if let text = feild?.text{
                 if text == "" {
-                    feild?.layer.backgroundColor = UIColor.red.cgColor
-                    feild?.placeholder = "Votre champs est vide"
+                    feild?.placeholder = "champs obligatoire"
                 } else {
                     feild?.layer.backgroundColor = .none
                 }
@@ -75,14 +74,10 @@ class RecordingViewController: UIViewController {
     }
 
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if let newViewController = segue.destination as? ListeViewController{
-            let d = sender as! listeContact
-                newViewController.contacts = d
-                newViewController.test = test
-               }
+                newViewController.contacts = listeContact
+        }
     }
-    
-
 }

@@ -11,4 +11,8 @@ import Foundation
 
 struct Contact{
     var tabPerson : [Person] = []
+    
+    init(person: Person) {
+        tabPerson.append(person)
+    }
 }
