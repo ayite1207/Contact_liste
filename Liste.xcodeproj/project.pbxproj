@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA26ECCD248A467200D17051 /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA26ECCC248A467200D17051 /* ContactService.swift */; };
+		EA534DF9248A974700AF1A7A /* ContactCodableJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA534DF8248A974700AF1A7A /* ContactCodableJSON.swift */; };
 		EA55590D247D710E00156653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA55590C247D710E00156653 /* AppDelegate.swift */; };
 		EA55590F247D710E00156653 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA55590E247D710E00156653 /* SceneDelegate.swift */; };
 		EA555914247D710E00156653 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA555912247D710E00156653 /* Main.storyboard */; };
@@ -19,9 +21,12 @@
 		EABD2615247FB0EF008E740C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD2614247FB0EF008E740C /* Person.swift */; };
 		EABD2617247FB3EF008E740C /* Contac.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD2616247FB3EF008E740C /* Contac.swift */; };
 		EABD2619247FE4DD008E740C /* CheckData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD2618247FE4DD008E740C /* CheckData.swift */; };
+		EAC0D631248705B50002CB0A /* ViewController+UIImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC0D630248705B50002CB0A /* ViewController+UIImagePickerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA26ECCC248A467200D17051 /* ContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactService.swift; sourceTree = "<group>"; };
+		EA534DF8248A974700AF1A7A /* ContactCodableJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCodableJSON.swift; sourceTree = "<group>"; };
 		EA555909247D710E00156653 /* Liste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA55590C247D710E00156653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA55590E247D710E00156653 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +41,7 @@
 		EABD2614247FB0EF008E740C /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		EABD2616247FB3EF008E740C /* Contac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contac.swift; sourceTree = "<group>"; };
 		EABD2618247FE4DD008E740C /* CheckData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckData.swift; sourceTree = "<group>"; };
+		EAC0D630248705B50002CB0A /* ViewController+UIImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UIImagePickerController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				EABD2612247FA315008E740C /* Recording ViewController.swift */,
+				EAC0D630248705B50002CB0A /* ViewController+UIImagePickerController.swift */,
 				EA555927247D7A2600156653 /* TableViewCell.swift */,
 				EAACF21124805B6D00280D7E /* ListeViewController.swift */,
 			);
@@ -74,6 +81,8 @@
 				EABD2614247FB0EF008E740C /* Person.swift */,
 				EABD2616247FB3EF008E740C /* Contac.swift */,
 				EABD2618247FE4DD008E740C /* CheckData.swift */,
+				EA26ECCC248A467200D17051 /* ContactService.swift */,
+				EA534DF8248A974700AF1A7A /* ContactCodableJSON.swift */,
 			);
 			path = Modele;
 			sourceTree = "<group>";
@@ -183,10 +192,13 @@
 				EA555928247D7A2600156653 /* TableViewCell.swift in Sources */,
 				EA55590D247D710E00156653 /* AppDelegate.swift in Sources */,
 				EABD2613247FA315008E740C /* Recording ViewController.swift in Sources */,
+				EA534DF9248A974700AF1A7A /* ContactCodableJSON.swift in Sources */,
+				EAC0D631248705B50002CB0A /* ViewController+UIImagePickerController.swift in Sources */,
 				EABD2619247FE4DD008E740C /* CheckData.swift in Sources */,
 				EA55590F247D710E00156653 /* SceneDelegate.swift in Sources */,
 				EAACF21224805B6D00280D7E /* ListeViewController.swift in Sources */,
 				EA555917247D710E00156653 /* Liste.xcdatamodeld in Sources */,
+				EA26ECCD248A467200D17051 /* ContactService.swift in Sources */,
 				EABD2615247FB0EF008E740C /* Person.swift in Sources */,
 				EABD2617247FB3EF008E740C /* Contac.swift in Sources */,
 			);

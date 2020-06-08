@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol DisplayViewControllerDelegate : NSObjectProtocol{
+    func doSomethingWith(data: Person)
+}
+
+
 class RecordingViewController: UIViewController {
 
     @IBOutlet weak var picture: UIImageView!
@@ -20,21 +25,30 @@ class RecordingViewController: UIViewController {
     @IBOutlet weak var mail: UITextField!
     var person : Person?
     var listeContact : [Person] = []
-   
-    var test = "SALUT LES TERRIENS !"
+    weak var delegate : DisplayViewControllerDelegate?
+    var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
+        
+        addGesture()
+        
         roundPicture()
         // Do any additional setup after loading the view.
     }
     
     func roundPicture(){
-        picture.layer.borderWidth = 1
         picture.layer.masksToBounds = false
         picture.layer.borderColor = UIColor.black.cgColor
         picture.layer.cornerRadius = picture.frame.height/2
         picture.clipsToBounds = true
+    }
+    
+    fileprivate func addGesture() {
+        picture.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        picture.addGestureRecognizer(tapRecognizer)
     }
     
     // MARK: - Navigation
@@ -55,8 +69,14 @@ class RecordingViewController: UIViewController {
             tel.text = ""
             return tel.placeholder = "votre numéro n'est pas complet"
         }
-        person = Person(name: checkData.name!, firstName: checkData.firstName!, tel: checkData.phone!, adress: adress, cP: cP, city: city, mail: mail, picture: picture)
+        let photo = "person"
+        person = Person(name: checkData.name!, firstName: checkData.firstName!, tel: checkData.phone!, adress: adress, cP: cP, city: city, mail: mail, picture: photo)
        listeContact.append(person!)
+        if let delegate = delegate{
+            if let conact = person{
+             delegate.doSomethingWith(data: conact)
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -71,6 +91,12 @@ class RecordingViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func imageTapped(recognizer: UITapGestureRecognizer) {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
     }
 
     

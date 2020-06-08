@@ -10,14 +10,36 @@ import UIKit
 
 class ListeViewController: UIViewController, UITableViewDataSource , UITableViewDelegate  {
     
-      var contacts: [Person] = []
-      
+    
+    var contacts: [Person] = []
+    var table : UITableView?
+    
       override func viewDidLoad() {
           super.viewDidLoad()
+        
+        ContactService.getContact { (success, person) in
+            if success, let person = person {
+                 self.update(persons: person)
+            }
+        }
           // Do any additional setup after loading the view.
       }
     
+    @IBAction func button(_ sender: Any) {
+        ContactService.getContact { (success, person) in
+            if success, let person = person {
+                 self.update(persons: person)
+            }
+        }
+    }
+    
+    func update(persons: [Person]){
+        
+             contacts = persons
+        
+    }
       func numberOfSections(in tableView: UITableView) -> Int {
+        table = tableView
           return 1
       }
       
@@ -28,10 +50,15 @@ class ListeViewController: UIViewController, UITableViewDataSource , UITableView
       
       
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "name", for: indexPath)
-          cell.textLabel?.text = contacts[indexPath.row].name
-          cell.detailTextLabel?.text = contacts[indexPath.row].firstName
-          
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as? ContactsTableViewCell else{
+            return UITableViewCell()
+        }
+        let name = contacts[indexPath.row].name
+        let firstName = contacts[indexPath.row].firstName
+        let photo = UIImage(named: contacts[indexPath.row].picture)
+        cell.name.text = "\(firstName)  \(name)"
+        cell.photo.image = photo
+        
           return cell
       }
       
@@ -40,11 +67,25 @@ class ListeViewController: UIViewController, UITableViewDataSource , UITableView
     
        }
     
-//    @IBAction func DidUnwindFromRecordingStoryboard(_ sender: UIStoryboardSegue) {
-//        guard let recordingVC = sender.source as? RecordingViewController else {return}
-//        recordingVC.person = Person(name: recordingVC.name.text!, firstName: recordingVC.firstName.text!, tel: recordingVC.tel.text!, adress: recordingVC.adress.text!, cP: recordingVC.cP.text!, city: recordingVC.city.text!, mail: recordingVC.mail.text!, picture: recordingVC.picture)
-//        recordingVC.listeContact.append(recordingVC.person!)
-//        contacts = recordingVC.listeContact
-//}
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "listeContacts"){
+            let displayVC = segue.destination as! RecordingViewController
+            displayVC.delegate = self as DisplayViewControllerDelegate
+        }
+    }
+}
 
+
+extension ListeViewController: DisplayViewControllerDelegate {
+    
+    func doSomethingWith(data: Person) {
+        contacts.append(data)
+        if let tab = table {
+            tab.reloadData()
+        }
+        for contact in contacts{
+            print("NOm : \(contact.name)")
+        }
+    }
+    
 }

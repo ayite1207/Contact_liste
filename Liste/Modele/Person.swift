@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct Person {
-    let picture : UIImageView
+    let picture : String
     let name : String
     let firstName : String
     let adress : String?
@@ -19,7 +19,7 @@ struct Person {
     let tel : String
     let mail : String?
     
-    init(name: String, firstName: String, tel: String, adress: String, cP: String, city: String, mail: String, picture: UIImageView) {
+    init(name: String, firstName: String, tel: String, adress: String, cP: String, city: String, mail: String, picture: String) {
         self.name = name
         self.firstName = firstName
         self.adress = adress
@@ -30,3 +30,4 @@ struct Person {
         self.picture = picture
     }
 }
+

@@ -10,12 +10,8 @@ import UIKit
 
 class ContactsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        roundPicture()
         // Initialization code
     }
 
@@ -24,11 +20,7 @@ class ContactsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func roundPicture(){
-        photo.layer.masksToBounds = false
-        photo.layer.cornerRadius = photo.frame.height/2
-        photo.clipsToBounds = true
-    }
+    
     func test(){
         print("hello")
     }
