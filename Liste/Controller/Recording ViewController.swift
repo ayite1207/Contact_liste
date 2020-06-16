@@ -31,9 +31,7 @@ class RecordingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        
         addGesture()
-        
         roundPicture()
         // Do any additional setup after loading the view.
     }
@@ -103,7 +101,7 @@ class RecordingViewController: UIViewController {
 //     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if let newViewController = segue.destination as? ListeViewController{
-                newViewController.contacts = listeContact
+                newViewController.tabContacts = listeContact
         }
     }
 }

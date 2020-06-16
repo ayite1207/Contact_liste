@@ -24,13 +24,12 @@ class ContactsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func roundPicture(){
+    
+    private func roundPicture(){
         photo.layer.masksToBounds = false
-        photo.layer.cornerRadius = photo.frame.height/2
+        photo.layer.cornerRadius = photo.frame.width/2
         photo.clipsToBounds = true
-    }
-    func test(){
-        print("hello")
     }
 
 }
+

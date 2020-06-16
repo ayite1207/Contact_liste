@@ -10,62 +10,70 @@ import UIKit
 
 class ListeViewController: UIViewController, UITableViewDataSource , UITableViewDelegate  {
     
-    
-    var contacts: [Person] = []
     var table : UITableView?
+    var tabContacts: [Person] = []
+    var listeContact: Contact?
+   
     
-      override func viewDidLoad() {
-          super.viewDidLoad()
-        
-        ContactService.getContact { (success, person) in
-            if success, let person = person {
-                 self.update(persons: person)
-            }
-        }
-          // Do any additional setup after loading the view.
-      }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        displayContact()
+        // Do any additional setup after loading the view.
+    }
     
-    @IBAction func button(_ sender: Any) {
-        ContactService.getContact { (success, person) in
-            if success, let person = person {
-                 self.update(persons: person)
+    
+    func displayContact(){
+         print("fonction displayContact")
+        ContactService.getContact { (success, listeContact) in
+            if success, let listeContact = listeContact {
+                self.listeContact = listeContact
             }
+            self.update()
         }
     }
     
-    func update(persons: [Person]){
-        
-             contacts = persons
-        
+    func update(){
+        if let tab = table {
+            tab.reloadData()
+        }
     }
-      func numberOfSections(in tableView: UITableView) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         table = tableView
-          return 1
-      }
-      
-      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           
-        return contacts.count
-      }
-      
-      
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var numberOfSections = 0
+        if let number = listeContact?.numberOfSection {
+            numberOfSections = number
+        }
+        return numberOfSections
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var numberOfRowsInSection = 0
+        if let number = listeContact?.tabPerson.count {
+            numberOfRowsInSection = number
+        }
+        return numberOfRowsInSection
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as? ContactsTableViewCell else{
             return UITableViewCell()
         }
-        let name = contacts[indexPath.row].name
-        let firstName = contacts[indexPath.row].firstName
-        let photo = UIImage(named: contacts[indexPath.row].picture)
-        cell.name.text = "\(firstName)  \(name)"
-        cell.photo.image = photo
-        
-          return cell
-      }
-      
-      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _ = tableView.cellForRow(at: indexPath)
+        if let name = listeContact?.tabPerson[indexPath.row].name, let firstName = listeContact?.tabPerson[indexPath.row].firstName, let stringPicture = listeContact?.tabPerson[indexPath.row].picture {
+            let urlPicture =  URL(string: stringPicture)
+            cell.name.text = "\(firstName)  \(name)"
+            cell.photo.load(url: urlPicture!)
+        }
+        return cell
+    }
     
-       }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let number = indexPath.row
+        print(number)
+        _ =  listeContact?.tabPerson[number]
+        performSegue(withIdentifier: "listeContacts", sender: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "listeContacts"){
@@ -79,13 +87,12 @@ class ListeViewController: UIViewController, UITableViewDataSource , UITableView
 extension ListeViewController: DisplayViewControllerDelegate {
     
     func doSomethingWith(data: Person) {
-        contacts.append(data)
+        listeContact?.tabPerson.append(data)
         if let tab = table {
             tab.reloadData()
-        }
-        for contact in contacts{
-            print("NOm : \(contact.name)")
         }
     }
     
 }
+
+
