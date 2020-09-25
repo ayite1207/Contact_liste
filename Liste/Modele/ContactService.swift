@@ -11,8 +11,7 @@ import UIKit
 
 class ContactService {
 
-    
-    private static let contactUrl = URL(string: "https://randomuser.me/api/?nat=fr&inc=name,phone,picture,location,email&results=20")!
+    private static let contactUrl = URL(string: "https://randomuser.me/api/?nat=fr&inc=name,phone,picture,location,email&results=10")!
     
     static func getContact(callback: @escaping (Bool, Contact?)-> Void){
         let session = URLSession(configuration: .default)
@@ -34,7 +33,7 @@ class ContactService {
                                 let person = Person(name: name!, firstName: firstName!, tel: phone, adress: adress, cP: cp, city: city, mail: email, picture: picture!)
                                 tabContact.append(person)
                             }
-                            let listeContact = Contact(person: tabContact)
+                            let listeContact = Contact(tabPerson: tabContact)
                             callback(true, listeContact)
                         } else {
                             callback(false, nil)

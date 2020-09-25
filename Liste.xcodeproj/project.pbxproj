@@ -17,6 +17,7 @@
 		EA55591C247D710F00156653 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA55591A247D710F00156653 /* LaunchScreen.storyboard */; };
 		EA555928247D7A2600156653 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA555927247D7A2600156653 /* TableViewCell.swift */; };
 		EA77DAAC249128DE00F55FEC /* UIImageView+loadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA77DAAB249128DE00F55FEC /* UIImageView+loadImage.swift */; };
+		EAA44497249AC15100BEBE97 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA44496249AC15100BEBE97 /* ContactViewController.swift */; };
 		EAACF21224805B6D00280D7E /* ListeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAACF21124805B6D00280D7E /* ListeViewController.swift */; };
 		EABD2613247FA315008E740C /* Recording ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD2612247FA315008E740C /* Recording ViewController.swift */; };
 		EABD2615247FB0EF008E740C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABD2614247FB0EF008E740C /* Person.swift */; };
@@ -38,6 +39,7 @@
 		EA55591D247D710F00156653 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA555927247D7A2600156653 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		EA77DAAB249128DE00F55FEC /* UIImageView+loadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+loadImage.swift"; sourceTree = "<group>"; };
+		EAA44496249AC15100BEBE97 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		EAACF21124805B6D00280D7E /* ListeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeViewController.swift; sourceTree = "<group>"; };
 		EABD2612247FA315008E740C /* Recording ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording ViewController.swift"; sourceTree = "<group>"; };
 		EABD2614247FB0EF008E740C /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -60,11 +62,12 @@
 		EA00EEF4247EA53F00573952 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EABD2612247FA315008E740C /* Recording ViewController.swift */,
 				EAC0D630248705B50002CB0A /* ViewController+UIImagePickerController.swift */,
+				EA77DAAB249128DE00F55FEC /* UIImageView+loadImage.swift */,
+				EABD2612247FA315008E740C /* Recording ViewController.swift */,
 				EA555927247D7A2600156653 /* TableViewCell.swift */,
 				EAACF21124805B6D00280D7E /* ListeViewController.swift */,
-				EA77DAAB249128DE00F55FEC /* UIImageView+loadImage.swift */,
+				EAA44496249AC15100BEBE97 /* ContactViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA555928247D7A2600156653 /* TableViewCell.swift in Sources */,
+				EAA44497249AC15100BEBE97 /* ContactViewController.swift in Sources */,
 				EA55590D247D710E00156653 /* AppDelegate.swift in Sources */,
 				EABD2613247FA315008E740C /* Recording ViewController.swift in Sources */,
 				EA534DF9248A974700AF1A7A /* ContactCodableJSON.swift in Sources */,

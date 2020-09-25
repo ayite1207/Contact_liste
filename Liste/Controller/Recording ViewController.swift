@@ -15,6 +15,9 @@ protocol DisplayViewControllerDelegate : NSObjectProtocol{
 
 class RecordingViewController: UIViewController {
 
+    
+    @IBOutlet weak var valider: UIBarButtonItem!
+    
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var firstName: UITextField!
@@ -23,6 +26,7 @@ class RecordingViewController: UIViewController {
     @IBOutlet weak var cP: UITextField!
     @IBOutlet weak var tel: UITextField!
     @IBOutlet weak var mail: UITextField!
+    @IBOutlet weak var whiteBackground: UIView!
     var person : Person?
     var listeContact : [Person] = []
     weak var delegate : DisplayViewControllerDelegate?
@@ -31,8 +35,11 @@ class RecordingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        valider.title = "valider"
         addGesture()
         roundPicture()
+        roundBackground()
+        shadowBackground()
         // Do any additional setup after loading the view.
     }
     
@@ -41,6 +48,19 @@ class RecordingViewController: UIViewController {
         picture.layer.borderColor = UIColor.black.cgColor
         picture.layer.cornerRadius = picture.frame.height/2
         picture.clipsToBounds = true
+    }
+    func roundBackground(){
+        whiteBackground.layer.masksToBounds = false
+        whiteBackground.layer.borderColor = UIColor.black.cgColor
+        whiteBackground.layer.cornerRadius = whiteBackground.frame.height/40
+        whiteBackground.clipsToBounds = true
+    }
+    
+    func shadowBackground(){
+        whiteBackground.layer.shadowColor = UIColor.red.cgColor
+         whiteBackground.layer.shadowRadius = 5
+        whiteBackground.layer.shadowOpacity = 1
+        whiteBackground.layer.shadowOffset = CGSize(width: 0, height: 1)
     }
     
     fileprivate func addGesture() {
@@ -99,9 +119,9 @@ class RecordingViewController: UIViewController {
 
     
 //     In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if let newViewController = segue.destination as? ListeViewController{
-                newViewController.tabContacts = listeContact
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//         if let newViewController = segue.destination as? ListeViewController{
+//                newViewController.tabContacts = listeContact
+//        }
+//    }
 }
